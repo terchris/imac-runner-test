@@ -1,0 +1,15 @@
+name: smoke-test
+on: [push]
+jobs:
+  smoke:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - name: sudo works
+        run: sudo whoami
+      - name: apt-get works
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq jq
+      - name: docker works
+        run: docker version
+      - name: all good
+        run: echo "GITHUB_RUNNER_SMOKE_TEST_PASSED"
